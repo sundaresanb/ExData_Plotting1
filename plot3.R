@@ -1,0 +1,8 @@
+data <- read.table(file = "household_power_consumption.txt", sep = ";",
+                   skip = 66637,nrows = 2880)
+days <- strptime(paste(data$V1, data$V2), format='%d/%m/%Y %H:%M:%S')
+plot(days, data$V7, type="l", xlab="", ylab="Energy sub metering")
+lines(days, as.numeric(as.character(data$V8)), type="l", col='Red')
+lines(days, as.numeric(as.character(data$V9)), type="l", col='Blue')
+dev.copy(png, 'plot3.png')
+dev.off()
